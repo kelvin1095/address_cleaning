@@ -1,0 +1,65 @@
+
+sample_set_1.csv
+Address with no flat or level
+street type and street suffix using code
+2% chance of typo on street name and locality
+
+all-mini-l6-v2:
+1   89369 / 100000
+3   94378 / 100000
+5   95517 / 100000
+10  96807 / 100000
+20  97794 / 100000
+
+street_matching_model:
+1   97444 / 100000
+3   98864 / 100000
+5   99086 / 100000
+10  99314 / 100000
+20  99510 / 100000
+
+
+sample_set_2.csv
+Only address with flat component (shop/unit/suite etc)
+flat type 0.5 random
+street type 0.2 random
+street suffix 0.5 random
+2% chance of typo on street name and locality
+
+all-mini-l6-v2:
+1   82833 / 100000
+3   90285 / 100000
+5   92073 / 100000
+10  94171 / 100000
+20  95720 / 100000
+
+street_matching_model:
+1   97090 / 100000
+3   98662 / 100000
+5   98912 / 100000
+10  99214 / 100000
+20  99474 / 100000
+
+
+sample_set_3.csv
+Address with no flat or level
+street type 0.2 random
+street suffix 0.5 random
+2% chance of typo on street name and locality
+5% chance of company/individual name before address
+
+all-mini-l6-v2:
+1   88456 / 100000
+3   92982 / 100000
+5   94221 / 100000
+10  95573 / 100000
+20  96748 / 100000
+
+
+street_matching_model:
+1   97650 / 100000
+3   98918 / 100000
+5   99123 / 100000
+10  99333 / 100000
+20  99528 / 100000
+
