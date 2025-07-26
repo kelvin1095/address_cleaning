@@ -100,6 +100,8 @@ for i in range(total_matches):
             match_at_3 += 1
         if found_rank == 1:
             match_at_1 += 1
+    else:
+        print(unclean_address[i])
 
 print(f"Match in Top 1:  {match_at_1}")
 print(f"Match in Top 3:  {match_at_3}")

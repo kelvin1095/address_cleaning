@@ -23,7 +23,8 @@
             street_suffix_aut.code as street_suffix_code,
             street_suffix_aut.name as street_suffix_name,
             locality.locality_name,
-            'NSW' AS state,
+            state.state_abbreviation AS state_code,
+            state.state_name AS state_name,
             address_detail.postcode,
             'AUSTRALIA' AS country
      FROM address_detail
@@ -32,5 +33,6 @@
      LEFT JOIN level_type_aut ON level_type_aut.code = address_detail.level_type_code
      LEFT JOIN flat_type_aut ON flat_type_aut.code = address_detail.flat_type_code
      LEFT JOIN street_suffix_aut ON street_suffix_aut.code = street_locality.street_suffix_code
-     LEFT JOIN street_type_aut ON street_type_aut.code = street_locality.street_type_code) TO 'address_fields.csv'
+     LEFT JOIN street_type_aut ON street_type_aut.code = street_locality.street_type_code
+     LEFT JOIN state ON state.state_pid = locality.state_pid) TO 'address_fields.csv'
 DELIMITER ',' CSV HEADER;

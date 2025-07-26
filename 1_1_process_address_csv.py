@@ -1,3 +1,4 @@
+# Import raw data from sql and transform it
 
 import pandas as pd
 import hashlib

@@ -1,6 +1,5 @@
 \COPY
     (SELECT address_detail.address_detail_pid,
-            MD5(concat_ws(' ', street_locality.street_name, street_type_aut.code, street_suffix_aut.name, locality.locality_name, postcode)) AS street_key,
             CONCAT_WS(' ', flat_type_aut.name, CASE
                                                    WHEN address_detail.flat_number_prefix IS NULL
                                                         AND address_detail.flat_number IS NULL
@@ -23,7 +22,7 @@
                                                         AND address_detail.number_last_suffix IS NULL THEN NULL
                                                    ELSE CONCAT_WS('', address_detail.number_last_prefix, address_detail.number_last, address_detail.number_last_suffix)
                                                END), street_locality.street_name, street_type_aut.code, street_suffix_aut.name) AS address_line_2,
-            CONCAT_WS(' ', locality.locality_name, 'NSW', address_detail.postcode) AS address_line_3,
+            CONCAT_WS(' ', locality.locality_name, state.state_abbreviation, address_detail.postcode) AS address_line_3,
             'AUSTRALIA' AS country
      FROM address_detail
      LEFT JOIN street_locality ON street_locality.street_locality_pid = address_detail.street_locality_pid
@@ -31,5 +30,6 @@
      LEFT JOIN level_type_aut ON level_type_aut.code = address_detail.level_type_code
      LEFT JOIN flat_type_aut ON flat_type_aut.code = address_detail.flat_type_code
      LEFT JOIN street_suffix_aut ON street_suffix_aut.code = street_locality.street_suffix_code
-     LEFT JOIN street_type_aut ON street_type_aut.code = street_locality.street_type_code) TO 'address_lines.csv'
+     LEFT JOIN street_type_aut ON street_type_aut.code = street_locality.street_type_code
+     LEFT JOIN state ON state.state_pid = locality.state_pid) TO 'address_lines.csv'
 DELIMITER ',' CSV HEADER;

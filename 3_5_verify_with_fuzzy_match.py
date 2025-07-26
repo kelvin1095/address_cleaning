@@ -98,6 +98,6 @@ def number_match_function(text):
 
 street_number_set_df['number_score'] = street_number_set_df['full_number'].apply(number_match_function)
 
-street_number_set_df = street_number_set_df[street_number_set_df['number_score'] > 60].sort_values('number_score')
+street_number_set_df = street_number_set_df[street_number_set_df['number_score'] > 60].sort_values('number_score', ascending=False).reset_index()
 
 print(street_number_set_df)
