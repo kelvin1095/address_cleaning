@@ -69,9 +69,13 @@ def best_number_match(remaining_address, numbers):
 def best_address_match(unclean_address, indices, keys, street_by_key, numbers_by_key):
     street_keys = [keys[j] for j in indices.tolist()]
     address_street_list = [street_by_key[key] for key in street_keys]
-    street_idx, _, street = best_street_match(unclean_address, address_street_list)
+    street_idx, street_score, street = best_street_match(unclean_address, address_street_list)
+    if street_score < 70:
+        return None
     # print(street_keys[street_idx])
     address_number_list = numbers_by_key[street_keys[street_idx]]
+    if all(pd.isna(x) for x in address_number_list):
+        return f"{address_street_list[street_idx]}"
     remaining_address = unclean_address.replace(street, '').strip()
     # print(remaining_address)
     # print(address_number_list)

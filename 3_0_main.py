@@ -8,7 +8,7 @@ import time
 from utils import preprocess_address_text, build_indexes, best_address_match
 
 
-dirty_address = "dirty_data/sample_set_2.csv"
+dirty_address = "dirty_data/dirty_data_1.csv"
 address_street_file = "address_street.csv"
 address_number_file = "address_number.csv"
 model_name = "model/street_matching_model"
@@ -32,7 +32,7 @@ keys, streets, street_by_key, numbers_by_key = build_indexes(street_df, number_d
 
 print("Loading unclean address data...")
 unclean_address_df = pd.read_csv(dirty_address, dtype='string')
-unclean_address = unclean_address_df['full_address'].tolist()
+unclean_address = unclean_address_df['dirty_address'].tolist()
 unclean_address = list(map(preprocess_address_text, unclean_address))
 
 
